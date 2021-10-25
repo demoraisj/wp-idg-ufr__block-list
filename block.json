@@ -18,6 +18,43 @@
 			"type": "string",
 			"enum": ["start", "center", "end"],
 			"default": "center"
+		},
+		"orientation": {
+			"type": "string",
+			"enum": ["", "horizontal"],
+			"default": ""
+		},
+		"size": {
+			"type": "string",
+			"enum": ["", "py-3", "py-4"],
+			"default": ""
+		},
+		"expandable": {
+			"type": "boolean",
+			"default": false
+		},
+		"items": {
+			"type": "string",
+			"default": "[]"
+		},
+		"useLinks": {
+			"type": "boolean",
+			"default": false
+		},
+		"icon": {
+			"type": "string",
+			"enum": [
+				"",
+				"fas fa-circle",
+				"far fa-circle",
+				"fas fa-arrow-right",
+				"fas fa-arrow-circle-right",
+				"fas fa-long-arrow-alt-right",
+				"fas fa-chevron-right",
+				"fas fa-square",
+				"far fa-square"
+			],
+			"default": "center"
 		}
 	}
 }

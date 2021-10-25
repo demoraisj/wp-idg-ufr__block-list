@@ -1,8 +1,13 @@
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { UFRBlockHeader, UFRSelect, UFRCheckbox } from 'wp-idg-ufr__block-components';
+import {
+	UFRBlockHeader,
+	UFRSelect,
+	UFRCheckbox,
+} from 'wp-idg-ufr__block-components';
 import { Fragment } from 'react';
-import Render from "./render";
+import Render from './render';
 import './editor.scss';
+import UFRListBuilder from './listBuilder';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -16,7 +21,8 @@ export default function edit({ attributes, setAttributes, isSelected }) {
 	/**
 	 * Desestruturação dos atributos do bloco registrados em block.json -> "attributes"
 	 */
-	const { position, orientation, size, expandable } = attributes;
+	const { position, orientation, size, expandable, items, icon, useLinks } =
+		attributes;
 
 	/**
 	 * Opções para configuração de posição do botão
@@ -29,15 +35,42 @@ export default function edit({ attributes, setAttributes, isSelected }) {
 		{ label: 'Direita', value: 'end' },
 	];
 
+	/**
+	 * Opções para a orientação da lista
+	 *
+	 * @type {{label: string, value: string}[]}
+	 */
 	const orientationOptions = [
 		{ label: 'Vertical', value: '' },
 		{ label: 'Horizontal', value: 'horizontal' },
 	];
 
+	/**
+	 * Opções para a densidade dos items da lista
+	 *
+	 * @type {{label: string, value: string}[]}
+	 */
 	const sizeOptions = [
 		{ label: 'Compacto', value: '' },
 		{ label: 'Médio', value: 'py-3' },
 		{ label: 'Largo', value: 'py-4' },
+	];
+
+	/**
+	 * Opções de icone dos items da lista
+	 *
+	 * @type {{label: string, value: string}[]}
+	 */
+	const iconOptions = [
+		{ label: 'Nenhum', value: '' },
+		{ label: 'Circulo cheio', value: 'fas fa-circle' },
+		{ label: 'Circulo vazio', value: 'far fa-circle' },
+		{ label: 'Quadrado cheio', value: 'fas fa-square' },
+		{ label: 'Quadrado vazio', value: 'far fa-square' },
+		{ label: 'Seta comum', value: 'fas fa-arrow-right' },
+		{ label: 'Seta em circulo', value: 'fas fa-arrow-circle-right' },
+		{ label: 'Seta comprida', value: 'fas fa-long-arrow-alt-right' },
+		{ label: 'Seta minimalista', value: 'fas fa-chevron-right' },
 	];
 
 	/**
@@ -77,10 +110,31 @@ export default function edit({ attributes, setAttributes, isSelected }) {
 							setter={setAttributes}
 						/>
 
+						<UFRSelect
+							label="Ícone"
+							options={iconOptions}
+							value={icon}
+							attr="icon"
+							setter={setAttributes}
+						/>
+
 						<UFRCheckbox
-							label="Items expandíveis"
+							label="Items expansíveis"
 							checked={expandable}
 							attr="expandable"
+							setter={setAttributes}
+						/>
+
+						<UFRCheckbox
+							label="Navegar para um link ao clicar no item"
+							checked={useLinks}
+							attr="useLinks"
+							setter={setAttributes}
+						/>
+
+						<UFRListBuilder
+							items={items}
+							attr="items"
 							setter={setAttributes}
 						/>
 					</div>
