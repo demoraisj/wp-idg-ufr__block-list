@@ -3,11 +3,11 @@ import {
 	UFRBlockHeader,
 	UFRSelect,
 	UFRCheckbox,
+	UFRListBuilder,
 } from 'wp-idg-ufr__block-components';
 import { Fragment } from 'react';
 import Render from './render';
 import './editor.scss';
-import UFRListBuilder from './listBuilder';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -21,7 +21,7 @@ export default function edit({ attributes, setAttributes, isSelected }) {
 	/**
 	 * Desestruturação dos atributos do bloco registrados em block.json -> "attributes"
 	 */
-	const { position, orientation, size, expandable, items, icon, useLinks } =
+	const { position, orientation, size, targetBlank, items, icon } =
 		attributes;
 
 	/**
@@ -119,16 +119,9 @@ export default function edit({ attributes, setAttributes, isSelected }) {
 						/>
 
 						<UFRCheckbox
-							label="Items expansíveis"
-							checked={expandable}
-							attr="expandable"
-							setter={setAttributes}
-						/>
-
-						<UFRCheckbox
-							label="Navegar para um link ao clicar no item"
-							checked={useLinks}
-							attr="useLinks"
+							label="Abrir links em uma nova aba"
+							checked={targetBlank}
+							attr="targetBlank"
 							setter={setAttributes}
 						/>
 
@@ -140,7 +133,7 @@ export default function edit({ attributes, setAttributes, isSelected }) {
 					</div>
 
 					<div className="row preview">
-						<Render attributes={attributes} preview={true} />
+						<Render attributes={attributes} />
 					</div>
 				</div>
 			</div>

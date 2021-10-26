@@ -29,17 +29,13 @@
 			"enum": ["", "py-3", "py-4"],
 			"default": ""
 		},
-		"expandable": {
+		"targetBlank": {
 			"type": "boolean",
-			"default": false
+			"default": true
 		},
 		"items": {
 			"type": "string",
 			"default": "[]"
-		},
-		"useLinks": {
-			"type": "boolean",
-			"default": false
 		},
 		"icon": {
 			"type": "string",
