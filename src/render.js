@@ -27,7 +27,6 @@ export default function Render({ attributes }) {
 
 		itemsList.forEach(({ text, link, children }) => {
 			const useExpansion = children.length > 0;
-
 			function textOrLink(textString, linkString) {
 				const validLink =
 					typeof linkString === 'string' && linkString.length > 0;
@@ -79,7 +78,11 @@ export default function Render({ attributes }) {
 						className={`align-items-center br-item ${size}`}
 						role="listitem"
 					>
-						<div className="row align-items-center">
+						<div
+							className={`row align-items-center ${
+								!useExpansion ? 'py-1' : ''
+							}`}
+						>
 							{icon.length >= 0 && (
 								<div className="col-auto">
 									<i className={icon} />
@@ -91,7 +94,7 @@ export default function Render({ attributes }) {
 							{useExpansion && (
 								<div className="col-auto">
 									<button
-										className="br-button circle"
+										className="br-button circle small"
 										type="button"
 									>
 										<i
