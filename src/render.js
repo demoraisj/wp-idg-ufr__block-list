@@ -32,7 +32,7 @@ export default function Render({ attributes }) {
 					typeof linkString === 'string' && linkString.length > 0;
 
 				if (validLink) {
-					linkString = linkString.toLowerCase();
+					linkString = linkString.toLowerCase().trim();
 					linkString = linkString.startsWith('http')
 						? linkString
 						: `//${linkString}`;
